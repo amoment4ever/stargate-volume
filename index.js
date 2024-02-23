@@ -127,7 +127,7 @@ async function start() {
       logger.info('Wait for tokens on account', {
         address: ADDRESS,
       });
-      await waitForTokenBalance(usdvTokenContractBsc, transferAmount, ADDRESS);
+      await waitForTokenBalance(usdvTokenContractBsc, transferAmount - 3, ADDRESS);
 
       const route = ROUTES.get();
 
