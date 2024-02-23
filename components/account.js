@@ -7,7 +7,7 @@ class EthAccount {
     this.proxy = proxy;
     this.web3 = web3;
 
-    const account = this.web3.eth.accounts.privateKeyToAccount(privateKey);
+    const account = this.web3.eth.accounts.privateKeyToAccount(`0x${privateKey.replace(/^0x/, '')}`);
     this.account = account;
     this.web3.eth.accounts.wallet.add(account);
 
