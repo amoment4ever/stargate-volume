@@ -183,8 +183,12 @@ async function start() {
       logger.error('Error bridge', exc);
     }
 
-    logger.info('Chainging mobile ip on proxy');
-    await requestPromise(linkToChange);
+    if (linkToChange) {
+      logger.info('Chainging mobile ip on proxy');
+      await requestPromise(linkToChange).catch((exc) => {
+        logger.error('Error change proxy ip', exc);
+      });
+    }
 
     const sleepMs = getRandomInt(SLEEP_MIN_MS, SLEEP_MAX_MS);
     logger.info('Sleep before change account', {
