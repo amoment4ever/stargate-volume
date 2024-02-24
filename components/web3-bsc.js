@@ -9,7 +9,10 @@ const web3sBscList = new LinkedList([]);
 const RPC_BSC = RPCS.find((item) => item.chain === 'BSC');
 
 proxies.array.forEach((proxy) => {
-  const agent = new HttpsProxyAgent(proxy.proxy);
+  let agent;
+  if (proxy?.proxy) {
+    agent = new HttpsProxyAgent(proxy?.proxy);
+  }
 
   const web3sBsc = new Web3(new Web3.providers.HttpProvider(RPC_BSC.rpc, {
     providerOptions: { agent },

@@ -9,7 +9,10 @@ const web3sAvaxList = new LinkedList([]);
 const RPC_AVAX = RPCS.find((item) => item.chain === 'AVAXC');
 
 proxies.array.forEach((proxy) => {
-  const agent = new HttpsProxyAgent(proxy.proxy);
+  let agent;
+  if (proxy?.proxy) {
+    agent = new HttpsProxyAgent(proxy?.proxy);
+  }
 
   const web3sAvax = new Web3(new Web3.providers.HttpProvider(RPC_AVAX.rpc, {
     providerOptions: { agent },
