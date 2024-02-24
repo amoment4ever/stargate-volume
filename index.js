@@ -76,17 +76,19 @@ async function doBridgeUsdv({
   });
 
   if (estimateGas) {
-    const response = await sendMethod.send({
-      from: account.address,
-      value: feeNative,
-      gasPrice: gasPrice * 1e9,
-      gasLimit: estimateGas,
-    });
+    await retry(async () => {
+      const response = await sendMethod.send({
+        from: account.address,
+        value: feeNative,
+        gasPrice: gasPrice * 1e9,
+        gasLimit: estimateGas,
+      });
 
-    logger.info('Sent transaction bridge USDV', {
-      address: account.address,
-      txHash: response.transactionHash,
-    });
+      logger.info('Sent transaction bridge USDV', {
+        address: account.address,
+        txHash: response.transactionHash,
+      });
+    }, 3, 15000);
   }
 
   const usdvTokenContractTo = new ERC20Contract(web3To, USDV_TOKEN_ADDRESS[toChain]);
