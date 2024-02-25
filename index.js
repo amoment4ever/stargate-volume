@@ -80,7 +80,7 @@ async function doBridgeUsdv({
       const response = await sendMethod.send({
         from: account.address,
         value: feeNative,
-        gasPrice: +(gasPrice * 1e9).toFixed(0),
+        gasPrice: +(gasPrice * 1e9 * 1.02).toFixed(0),
         gasLimit: estimateGas,
       });
 
@@ -173,7 +173,7 @@ async function start() {
         const transferData = await usdvTokenContractBsc.transfer(DEPOSIT_BITGET_ADDRESS, balanceUSDV, {
           from: ADDRESS,
           gasLimit: 200000,
-          gasPrice: +(gasPriceBsc * 1e9).toFixed(0),
+          gasPrice: +(gasPriceBsc * 1e9 * 1.02).toFixed(0),
         });
 
         logger.info('Transfer to bitget', {
