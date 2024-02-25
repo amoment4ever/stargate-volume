@@ -80,7 +80,7 @@ async function doBridgeUsdv({
       const response = await sendMethod.send({
         from: account.address,
         value: feeNative,
-        gasPrice: gasPrice * 1e9,
+        gasPrice: (gasPrice * 1e9).toFixed(0),
         gasLimit: estimateGas,
       });
 
@@ -89,7 +89,7 @@ async function doBridgeUsdv({
         txHash: response.transactionHash,
       });
     }
-  }, 3, 15000);
+  }, 100, 10000);
 
   const usdvTokenContractTo = new ERC20Contract(web3To, USDV_TOKEN_ADDRESS[toChain]);
   await waitForTokenBalance(usdvTokenContractTo, transferAmount - 1, account.address);
@@ -173,7 +173,7 @@ async function start() {
         const transferData = await usdvTokenContractBsc.transfer(DEPOSIT_BITGET_ADDRESS, balanceUSDV, {
           from: ADDRESS,
           gasLimit: 200000,
-          gasPrice: gasPriceBsc * 1e9,
+          gasPrice: (gasPriceBsc * 1e9).toFixed(0),
         });
 
         logger.info('Transfer to bitget', {
