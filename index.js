@@ -81,7 +81,7 @@ async function doBridgeUsdv({
         from: account.address,
         value: feeNative,
         gasPrice: +(gasPrice * 1e9 * 1.02).toFixed(0),
-        gasLimit: estimateGas,
+        gasLimit: +(Number(estimateGas) * 1.15).toFixed(0),
       });
 
       logger.info('Sent transaction bridge USDV', {
