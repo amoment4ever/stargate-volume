@@ -180,7 +180,7 @@ async function start() {
           hash: transferData.transactionHash,
           balanceUSDV,
         });
-      }, 3);
+      }, 3, 15000);
     } catch (exc) {
       logger.error('Error bridge', exc);
     }
