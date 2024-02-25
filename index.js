@@ -57,14 +57,14 @@ async function doBridgeUsdv({
   const transferAmountWei = new BigNumber(transferAmount).multipliedBy(10 ** Number(decimalsUsdv));
   const minAmountWei = new BigNumber(transferAmount).multipliedBy(10 ** Number(decimalsUsdv)).minus(100);
 
-  const { method: sendMethod, feeNative } = await stargate.sendUsdvMethod(
-    account.address,
-    transferAmountWei.toString(),
-    minAmountWei.toString(),
-    toChain,
-  );
-
   await retry(async () => {
+    const { method: sendMethod, feeNative } = await stargate.sendUsdvMethod(
+      account.address,
+      transferAmountWei.toString(),
+      minAmountWei.toString(),
+      toChain,
+    );
+
     const gasPrice = await account.getGasPrice();
     const estimateGas = await sendMethod.estimateGas({
       from: account.address,
