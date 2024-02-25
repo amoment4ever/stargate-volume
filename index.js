@@ -89,7 +89,7 @@ async function doBridgeUsdv({
         txHash: response.transactionHash,
       });
     }
-  }, 100, 10000);
+  }, 100, 20000);
 
   const usdvTokenContractTo = new ERC20Contract(web3To, USDV_TOKEN_ADDRESS[toChain]);
   await waitForTokenBalance(usdvTokenContractTo, transferAmount - 1, account.address);
