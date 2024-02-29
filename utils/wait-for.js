@@ -21,7 +21,7 @@ async function waitForBitgetBalance(amount) {
         await sleep(10000);
       }
     }
-  }, 3, 10000);
+  }, 30, 10000);
 }
 
 async function waitForTokenBalance(erc20Contract, amount, address) {
@@ -45,7 +45,7 @@ async function waitForTokenBalance(erc20Contract, amount, address) {
         await sleep(10000);
       }
     }
-  }, 3, 10000);
+  }, 30, 10000);
 }
 
 module.exports = {

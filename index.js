@@ -157,7 +157,7 @@ async function start() {
             web3From: web3Map[fromChain],
             web3To: web3Map[toChain],
           });
-        }, 3);
+        }, 10, 10000);
 
         logger.info('Bridge done', {
           fromChain,
@@ -180,7 +180,7 @@ async function start() {
           hash: transferData.transactionHash,
           balanceUSDV,
         });
-      }, 5, 15000);
+      }, 10, 15000);
     } catch (exc) {
       logger.error('Error bridge', exc);
     }
